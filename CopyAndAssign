@@ -1,0 +1,29 @@
+class Test {
+public:
+	int a;
+	Test(int y):a(y) {}
+	Test(const Test& obj) {
+		a = obj.a;
+		a = 67;
+	}
+
+	Test& operator=(const Test& other) {
+		if (this != &other) {
+			a = other.a;
+			cout << "Copy assignment called " << endl;
+		}
+		return *this;
+	}
+};
+ 
+int main() {
+	
+	Test obj1(34);
+	Test obj2(obj1);
+	cout << "Object 1 value "<<obj1.a << endl;
+	cout << "Object 2 value "<<obj2.a << endl;
+
+	obj1 = obj2;
+	cout << "Object 1 value " << obj1.a << endl;
+	cout << "Object 2 value " << obj2.a << endl;
+}
